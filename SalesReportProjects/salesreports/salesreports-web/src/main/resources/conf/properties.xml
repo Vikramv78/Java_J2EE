@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+    <context:component-scan base-package="org.hiree.salesreports" />
+    
+    <!-- <context:property-placeholder location="classpath:conf/app-config.properties" /> -->
+	<context:property-placeholder	properties-ref="defaultProperties" />
+
+	<util:properties id="defaultProperties">
+		<prop key="accountSid">ACc8bd0436248dd3af1c861ad4bd183db0</prop>
+		<prop key="applicationSid">AP0e38bac388e2250d42b310702e88a3d8</prop>
+		<prop key="authToken">64e6f265cae1707f129c90ecdcf0b787</prop>
+		<prop key="MessagingServiceSid">MGa77ba9edddc2e309c09468115b97e3d5</prop>
+		<prop key="serverRoot">http://54.236.202.240:8080/</prop>
+		<prop key="fromTwilioNumber">+17326075022</prop>
+		<prop key="taskRouterFromTwilioNumber">+17326075022</prop>
+		<prop key="taskRouterWorkspaceSid">WS2aa66da07947f621a88589bdc9737bd6</prop>
+		<prop key="taskRouterWorkflowSid">WW48a24da298cdd8d45667aa47850fb7e7</prop>
+		<prop key="taskRouterPostWorkActivitySid">WAfc0139d14d41279193584ec4ca5fc6a6</prop>
+
+		
+	</util:properties>
+	
+</beans>

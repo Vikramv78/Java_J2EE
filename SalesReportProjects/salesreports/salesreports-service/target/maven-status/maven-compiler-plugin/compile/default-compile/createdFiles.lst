@@ -1,0 +1,8 @@
+org\hiree\salesreports\services\impl\TestServiceImpl.class
+org\hiree\salesreports\services\interfaces\ISoldUsingService.class
+org\hiree\salesreports\services\interfaces\ITestService.class
+org\hiree\salesreports\services\interfaces\IUserService.class
+org\hiree\salesreports\services\impl\GenericDataServiceImpl.class
+org\hiree\salesreports\services\impl\UserServiceImpl.class
+org\hiree\salesreports\services\interfaces\IGenericDataService.class
+org\hiree\salesreports\services\impl\SoldUsingServiceImpl.class

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd" >
+
+	<context:component-scan base-package="org.hiree.salesreports" />
+	
+	
+	
+    <import resource="classpath:conf/services-context.xml" />
+    <import resource="classpath:conf/dao-context.xml" />
+	<!-- Web Layer -->
+	<import resource="application-context-web.xml" />
+	<import resource="properties.xml" />
+	
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
+	p:driverClassName="oracle.jdbc.driver.OracleDriver" p:url="jdbc:oracle:thin:@//infdbslmiad8017.aws.etscloud.org:1526/IBISDV" p:username="IBIS06" p:password="IBi$62o14!" />
+	 
+	 
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="dataSource" />
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+	<property name="dataSource" ref="dataSource" />
+	</bean> 
+	
+	<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager" />
+	
+	
+</beans>
