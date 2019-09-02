@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hiree.salesreports.rest.annotation.User;
 import org.hiree.salesreports.rest.dto.ResponseBaseDTO;
+import org.hiree.salesreports.rest.dto.UserDTO;
 import org.hiree.salesreports.rest.dto.common.ResponseDTOWrapper;
 import org.hiree.salesreports.rest.dto.dialog.DialogColumnRowInfoDTO;
 import org.hiree.salesreports.rest.dto.grid.GridInfoDTO;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/generic")
 public class GenericDataController extends AbstractRestController{
 	
@@ -31,6 +32,7 @@ public class GenericDataController extends AbstractRestController{
 	@RequestMapping(path = "/alltablerecords/{tableName}", method = RequestMethod.GET,produces = {MediaType.APPLICATION_JSON_VALUE})
 	@CrossOrigin
 	public ResponseEntity<List<ResponseDTOWrapper>> getGenericTableRecords(@PathVariable String tableName) throws Exception {
+		UserDTO user = getUser();
 		GridInfoDTO gridInfoDTO = genericDataService.getGenericDataAllRowsInfoFromTable(tableName);
 		return getResponse(gridInfoDTO);
 	}

@@ -6,14 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hiree.salesreports.rest.config.interfaces.IContext;
 import org.hiree.salesreports.rest.dto.UserDTO;
 import org.hiree.salesreports.rest.dto.UserSession;
 import org.hiree.salesreports.web.rest.base.ContextHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.WebUtils;
 
 @Component
 public class UserAnnotationValidator implements IBaseValidator {
@@ -22,15 +25,15 @@ public class UserAnnotationValidator implements IBaseValidator {
 	@Autowired ContextHolder contextHolder;
 	@Autowired IContext iContext;
 	@Autowired UserSession userSession;
-	//private static final String MDC_USER = "user";
+	private static final String MDC_USER = "user";
 	
 	@Override
 	public void validate(HttpServletRequest request, HttpServletResponse response, Method method,HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
-		//contextHolder.getcORSFilter().populateSessionUser(request, response, true);
-		populateSessionUser(session);
+		contextHolder.getcORSFilter().populateSessionUser(request, response, true);
+	//	populateSessionUser(session);
 	}
-	protected void populateSessionUser(HttpSession session)
+	/*protected void populateSessionUser(HttpSession session)
 			throws Exception {
 
 		try {
@@ -47,9 +50,9 @@ public class UserAnnotationValidator implements IBaseValidator {
 			logger.error("Exception in getTimeoutFilter().doFilterInternal", e);
 			throw e;
 		}
-	}
+	}*/
 	
-/*	protected void populateSessionUser(HttpServletRequest request, HttpServletResponse response, HttpSession session )
+	protected void populateSessionUser(HttpServletRequest request, HttpServletResponse response, HttpSession session )
 			throws Exception {
 
 		try {
@@ -67,7 +70,7 @@ public class UserAnnotationValidator implements IBaseValidator {
 				logger.info("[doFilterInternal] Attribute '" + "user" + "' not found for session '"
 						+ WebUtils.getSessionId(request) + "' (RequestURI: " + requestURI + ")");
 				// This will echo out request IP address in logs
-				HttpUtils.getRemoteIp(request);
+				//HttpUtils.getRemoteIp(request);
 			}
 
 			if (o instanceof UserDTO) {
@@ -78,7 +81,7 @@ public class UserAnnotationValidator implements IBaseValidator {
 
 				if (!StringUtils.isBlank(user.getLogin())) {
 					MDC.put(MDC_USER, user.getLogin() + ":" + request.getRemoteAddr());
-					userAddedtoMDC = true;
+					//userAddedtoMDC = true;
 				}
 
 				// Set current thread user
@@ -98,7 +101,7 @@ public class UserAnnotationValidator implements IBaseValidator {
 			logger.error("Exception in getTimeoutFilter().doFilterInternal", e);
 			throw e;
 		}
-	}*/
+	}
 	
 	public void clearThreadUser() {
 		iContext.clearThreadUser();

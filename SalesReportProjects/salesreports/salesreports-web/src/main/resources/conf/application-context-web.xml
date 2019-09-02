@@ -8,6 +8,7 @@
 	<context:component-scan base-package="org.hiree.salesreports.web" />
 	<bean id="startup" class="org.hiree.salesreports.web.servlet.Startup" init-method="init" />
 	<bean id="contextHolder" class="org.hiree.salesreports.web.rest.base.ContextHolder" autowire="byName"/>
+	<bean id="iContext" class="org.hiree.salesreports.rest.config.IContextImpl" autowire="byName" />
 	<!--<context:component-scan base-package="org.springframework.social" />  -->
    <!--   <bean id="sampleContext" class="com.sample.web.context.SampleContext" scope="session" />
      <bean id="testContext" class="com.sample.web.context.TestContext" scope="session" />

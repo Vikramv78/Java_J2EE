@@ -142,6 +142,23 @@ public class CORSFilter extends OncePerRequestFilter {
 		addRequiredProperty("url");
 	}
 
+	protected void noCache(HttpServletResponse response) {
+		// Prevents caching at the proxy server
+		response.setDateHeader("Expires", 0);
+
+		// Set standard HTTP/1.1 no-cache headers.
+		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+
+		// Set IE extended HTTP/1.1 no-cache headers (use addHeader).
+		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+
+		// Added for PN fix 7008 SameOrign
+		//response.addHeader("X-FRAME-OPTIONS", "SAMEORIGIN");
+		
+		// https://content-security-policy.com/
+		// https://www.w3.org/TR/CSP2/
+		//response.addHeader("Content-Security-Policy", "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; media-src 'self' data:; frame-ancestors *.ets.org;");
+	}
 	/*private String getHeaderValue(String headerName, HttpServletRequest request) {
 		try {
 			if (request != null) {

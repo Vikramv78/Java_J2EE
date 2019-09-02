@@ -1,11 +1,8 @@
 package org.hiree.salesreports.rest.dto;
 
 import org.hiree.salesreports.rest.dto.interfaces.Payload;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.context.annotation.ScopedProxyMode;
 @Component
-//@Scope(value="session",proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserDTO implements Payload{
 	
 	  /**
@@ -19,6 +16,7 @@ public class UserDTO implements Payload{
 	  private String fname; 
 	  private String lname;
 	  private String fullUsername;
+	  private String sessionId = null;
 	public long getUserID() {
 		return userID;
 	}
@@ -60,6 +58,12 @@ public class UserDTO implements Payload{
 	}
 	public void setFullUsername(String fullUsername) {
 		this.fullUsername = fullUsername;
+	}
+	public String getSessionId() {
+		return sessionId;
+	}
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	} 
 	 
 	

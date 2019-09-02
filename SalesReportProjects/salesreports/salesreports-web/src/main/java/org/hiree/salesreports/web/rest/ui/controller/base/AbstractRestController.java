@@ -3,22 +3,34 @@ package org.hiree.salesreports.web.rest.ui.controller.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hiree.salesreports.rest.config.interfaces.IContext;
+import org.hiree.salesreports.rest.dto.UserDTO;
 import org.hiree.salesreports.rest.dto.common.ResponseDTO;
 import org.hiree.salesreports.rest.dto.common.ResponseDTOWrapper;
 import org.hiree.salesreports.rest.dto.common.ResponseDTOWrapperForList;
 import org.hiree.salesreports.rest.dto.grid.GridInfoDTO;
 import org.hiree.salesreports.rest.dto.interfaces.Payload;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 
 public class AbstractRestController implements InitializingBean {
 
+		
+	@Autowired IContext iContext;
+	
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		// TODO Auto-generated method stub
+		Assert.notNull(iContext, "iContext should not be null");
 		
 	}
+	
+	protected UserDTO getUser() {
+		return iContext.getThreadUser();
+	}
+
 	
 	public ResponseEntity<List<ResponseDTOWrapper>> getResponse( String code, String title,
 			Payload payload) {

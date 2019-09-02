@@ -3,20 +3,12 @@ package org.hiree.salesreports.rest.config;
 import org.hiree.salesreports.rest.config.interfaces.IContext;
 import org.hiree.salesreports.rest.dto.UserDTO;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.stereotype.Component;
-
 import org.springframework.util.Assert;
 
-@Component("iContext")
+//@Component("iContext")
 public class IContextImpl implements IContext, InitializingBean {
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		// TODO Auto-generated method stub
 		
-	}
-
-	
 	/**
 	 * IBIS Context holder
 	 */
@@ -63,6 +55,45 @@ public class IContextImpl implements IContext, InitializingBean {
 	public void clearThreadUser() {
 		users.set(null);
 		cntxts.set(null);
+	}
+	
+	
+
+	/* ---------------------------------------------------
+	   IBIS Context section
+	   --------------------------------------------------- */
+	
+	/**
+	 * Returns the IBIS Context instance that is set on the current thread. This
+	 * is useful to retrieve IBIS Context object in a static way, which resolves to the
+	 * right IBIS Context instance, irrespective on the number of IBIS Context instances
+	 * that are instantiated (even across multiple Spring Application Contexts)<br>
+	 * <br>
+	 * Internally, it piggybacks on the setThreadUser() method call that associates user
+	 * to the current thread. While it does that, it also associates the IBIS Context
+	 * instance to the thread
+	 * 
+	 * @return <b>IbisContext</b> IBIS Context instance
+	 */
+	public static IContext getIContextForThread() {
+		return cntxts.get();
+	}
+	
+	/**
+	 * Returns user set on the current thread. This is useful to retrieve thread user in a
+	 * static way
+	 * 
+	 * @return <b>User</b> User set on thread
+	 * @see #getIbisContextForThread()
+	 */
+	public static UserDTO getUserForThread() {
+		return getIContextForThread().getThreadUser();
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
