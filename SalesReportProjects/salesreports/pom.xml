@@ -37,7 +37,7 @@
 		<apache.poi.version>3.13</apache.poi.version>
 		<spring.batch.version>2.1.9.RELEASE</spring.batch.version>
 		<jsf.version>2.1.29</jsf.version>
-		<fasterXml.version>2.6.3</fasterXml.version>
+		<fasterXml.version>2.10.0</fasterXml.version>
 		<jacksonmapper.asl.version>1.9.13</jacksonmapper.asl.version>
 		<jeuclid.version>3.1.9</jeuclid.version>
 		<batik.version>1.8</batik.version>
